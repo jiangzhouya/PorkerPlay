@@ -17,7 +17,7 @@ namespace GameModel
         six = 6,
         seven = 7,
         eight = 8,
-        night = 9,
+        nine = 9,
         ten = 10,
         jack = 11,
         queen = 12,
