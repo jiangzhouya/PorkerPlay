@@ -11,7 +11,9 @@ namespace GameModel
         Card[] _cards = new Card[52];
         internal Card[] Cards { get => _cards; }
 
-
+        /// <summary>
+        /// 创造一副牌出来，每张牌都在牌堆里面
+        /// </summary>
         public Deck()
         {
             int k = 0;
@@ -20,23 +22,12 @@ namespace GameModel
                 for (int j = 2; j < 15; j++)
                 {
                     Card c = new Card((Suit)(i), (Rank)(j));
+                    c.SetAvailable();
                     _cards[k] = c;
                     k++;
                 }
             }
-        }
-        public void IniDeck()
-        {
-            int k = 0;
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 2; j < 15; j++)
-                {
-                    Card c = new Card((Suit)(i), (Rank)(j));
-                    _cards[k] = c;
-                    k++;
-                }
-            }
+
         }
         public void Shuffle()
         {
@@ -51,21 +42,34 @@ namespace GameModel
 
         }
 
-        public Card getCard(int num)
+        /// <summary>
+        /// 把还在Deck里面的第一张牌发出去
+        /// </summary>
+        /// <returns></returns>
+        public Card GetCard()
         {
-            if (num < 1 || num > Cards.Length)
+            foreach (Card c in Cards)
             {
-                return Cards[Cards.Length - 1];
+                if (c.IsInDeck)
+                {
+                    c.SetUnavailable();
+                    return c;
+                }
             }
-            else
-            {
-                return Cards[num - 1];
-            }
-
+            throw (new System.ArgumentException("没有牌可以获得"));
         }
-        public int getCardCount()
+        public int GetDeckCount()
         {
-            return Cards.Length;
+            int i = 0;
+            foreach (Card c in Cards)
+            {
+                if (c.IsInDeck == true)
+                {
+                    i++;
+                }
+
+            }
+            return i;
         }
 
         private int GUIDSeed()

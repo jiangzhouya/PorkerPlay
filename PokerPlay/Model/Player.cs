@@ -15,29 +15,38 @@ namespace Model
 
 
         public string Name { get => _name; set => _name = value; }
-        public int Stack { get => _stack; set => _stack = value; }
-        public List<Card> Hands { get => _hands; set => _hands = value; }
+        public int Stack { get => _stack; }
+        public List<Card> Hands { get => _hands; }
 
         public Player(string name, int stack)
         {
             this.Name = name;
-            this.Stack = stack;
+            _stack = stack;
         }
 
-        public void GetHands()
-        {
-            //从Deck拿2张牌
-            //Hands数组里面里加上这2张牌
 
+        public void GetHand(Card c)
+        {
+            Hands.Add(c);
+        }
+
+        public int GetHandsCount()
+        {
+            int i = 0;
+            foreach(Card c in Hands)
+            {
+                i++;
+            }
+            return i;
         }
 
         public void StackIn(int stack)
         {
-            this.Stack += stack;
+            _stack += stack;
         }
         public void StackOut(int stack)
         {
-            this.Stack -= stack;
+            _stack -= stack;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace GameModel
     { spade = 3, heart = 2, club = 1, diamond = 0 }
     public enum Rank
     {
-        two = 2,
+        deuce = 2,
         three = 3,
         four = 4,
         five = 5,
@@ -32,7 +32,7 @@ namespace GameModel
         Boolean _isInDeck;
         public Suit Suit { get => _suit; }
         public Rank Rank { get => _rank; }
-        public bool IsInDeck { get => _isInDeck; }
+        public bool IsInDeck { get => _isInDeck;}
 
         public Card(Suit suit, Rank rank)
         {
